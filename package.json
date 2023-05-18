@@ -1,22 +1,30 @@
 {
   "name": "astro-csv",
-  "version": "0.0.1",
+  "description": "An Astro integration that adds support for CSV files in data collections",
+  "version": "0.1.0",
+  "homepage": "https://github.com/TheOtterlord/astro-csv",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TheOtterlord/astro-csv.git"
+  },
   "type": "module",
   "exports": {
     ".": "./index.ts"
   },
   "files": [
-    "src",
     "index.ts"
   ],
   "keywords": [
+    "astro",
     "withastro"
   ],
-  "scripts": {},
   "devDependencies": {
-    "astro": "^2.4.1"
+    "astro": "^2.5.0"
   },
   "peerDependencies": {
     "astro": "^2.0.0-beta.0"
+  },
+  "dependencies": {
+    "csv": "^6.3.0"
   }
 }
