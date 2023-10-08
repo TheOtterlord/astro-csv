@@ -2,8 +2,28 @@
 
 Use CSV files as data sources in Astro.
 
+## Install
+
 ```sh
 npx astro add astro-csv
+```
+
+### Manual install
+
+```sh
+npm i astro-csv
+```
+
+```ts
+// astro.config.mjs
+import { defineConfig } from 'astro/config'
+import astroCSV from 'astro-csv'
+
+export default defineConfig({
+  integrations: [
+    astroCSV()
+  ]
+})
 ```
 
 ## Usage
@@ -41,5 +61,3 @@ const sheets = defineCollection({
 
 export const collections = { sheets };
 ```
-
-`astro-csv` currently supports strings, numbers, booleans, and undefined (empty strings). More customizations coming soon!

@@ -1,5 +1,5 @@
-import type { AstroIntegration, ContentEntryType, DataEntryType, HookParameters } from 'astro'
-import { generate, parse, transform, stringify } from 'csv/sync'
+import type { AstroIntegration, DataEntryType, HookParameters } from 'astro'
+import { parse, transform } from 'csv/sync'
 
 type SetupHookParams = HookParameters<'astro:config:setup'> & {
 	// Add private type defs here
