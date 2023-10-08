@@ -1,7 +1,7 @@
 {
   "name": "astro-csv",
   "description": "An Astro integration that adds support for CSV files in data collections",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/TheOtterlord/astro-csv",
   "repository": {
     "type": "git",
@@ -16,6 +16,7 @@
   ],
   "keywords": [
     "astro",
+    "astro-integration",
     "withastro"
   ],
   "devDependencies": {
