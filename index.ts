@@ -1,5 +1,5 @@
 import type { AstroIntegration, ContentEntryType, DataEntryType, HookParameters } from 'astro'
-import csv from 'csv/sync'
+import { generate, parse, transform, stringify } from 'csv/sync'
 
 type SetupHookParams = HookParameters<'astro:config:setup'> & {
 	// Add private type defs here
@@ -12,7 +12,7 @@ interface CSVIntegrationOptions {
   transform?: (row: RowItem[]) => any[]
 }
 
-export default function createIntegration({ transform }: CSVIntegrationOptions): AstroIntegration {
+export default function createIntegration(opts: CSVIntegrationOptions): AstroIntegration {
 	return {
 		name: 'astro-csv',
 		hooks: {
@@ -22,7 +22,7 @@ export default function createIntegration({ transform }: CSVIntegrationOptions):
         addDataEntryType({
           extensions: ['.csv'],
           getEntryInfo: ({ contents }: { fileUrl: URL; contents: string }) => {
-            const data = csv.transform(csv.parse(contents), row => {
+            const data = transform(parse(contents), row => {
               row = row.map((value: string): RowItem => {
                 if (value === 'true') return true
                 if (value === 'false') return false
@@ -30,7 +30,7 @@ export default function createIntegration({ transform }: CSVIntegrationOptions):
                 if (isNaN(Number(value))) return value
                 return Number(value)
               })
-              return transform ? row.map(transform) : row
+              return opts.transform ? row.map(opts.transform) : row
             })
             return {
               data: {
