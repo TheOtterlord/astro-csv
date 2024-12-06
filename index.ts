@@ -9,7 +9,8 @@ type SetupHookParams = HookParameters<'astro:config:setup'> & {
 type RowItem = string | number | boolean | null
 
 interface CSVIntegrationOptions {
-  transform?: (row: RowItem[]) => any[]
+  transform?: (row: RowItem[]) => any[],
+  parseOptions?: {}
 }
 
 export default function createIntegration(opts: CSVIntegrationOptions): AstroIntegration {
@@ -22,7 +23,7 @@ export default function createIntegration(opts: CSVIntegrationOptions): AstroInt
         addDataEntryType({
           extensions: ['.csv'],
           getEntryInfo: ({ contents }: { fileUrl: URL; contents: string }) => {
-            const data = transform(parse(contents), row => {
+            const data = transform(parse(contents, opts.parseOptions ), row => {
               row = row.map((value: string): RowItem => {
                 if (value === 'true') return true
                 if (value === 'false') return false
